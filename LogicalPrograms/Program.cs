@@ -1,23 +1,23 @@
-﻿namespace LogicalPrograms
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
+class StopwatchProgram
 {
-    public class ReverseNumber
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Enter a number to reverse: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            int result = 0;
-            int remainder;
+        Stopwatch stopwatch = new Stopwatch();
+        Console.WriteLine("Start");
+        stopwatch.Start();
 
-            while (n != 0)
-            {
-                remainder = n % 10;
-                result = (result * 10) + remainder;
-                n = n / 10;  //quotient
-            }
-            Console.WriteLine("The reverse is: " + result);
-            Console.ReadLine();
+        for (int i = 0; i < 1000; i++)
+        {
+            Thread.Sleep(20);
         }
-            
-        }
+
+        Console.WriteLine("Stop");
+        stopwatch.Stop();
+
+        Console.WriteLine("Time Elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed);
+
+    }
     }
