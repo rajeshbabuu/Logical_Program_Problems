@@ -1,32 +1,29 @@
 ﻿namespace LogicalPrograms
 {
-    public class PerfectNumber
+    public class FibonacciSeries
     {
         static void Main(string[] args)
         {
-            int sum = 0;
-            Console.WriteLine("Enter a number: ");
-            int num = Convert.ToInt32(Console.ReadLine());
-            int n = num;
+            Console.WriteLine("Enter N terms for the Fibonacci Series: ");
+            int N = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 1; i < num; i++)
+            int a = 0;
+            int b = 1;
+            int c;
+
+            Console.WriteLine("The Fibonacci Series for {0} terms are: ", N);
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+
+            for (int i = 0; i < (N-2); i++)
             {
-                if (num % i == 0)
-                {
-                    sum = sum + i;
-                }
+                c = a + b;
+                Console.WriteLine(c);
+                a = b;
+                b = c;
             }
-            if (sum == n)
-            {
-                Console.WriteLine("{0} is a Perfect Number", num);
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("{0} is not a Perfect Number", num);
-                Console.ReadLine();
+            Console.ReadLine();
             }
             
         }
     }
-}
