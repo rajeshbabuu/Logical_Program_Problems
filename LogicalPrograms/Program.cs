@@ -1,23 +1,38 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-class StopwatchProgram
+﻿class CouponNumbers
 {
-    static void Main()
+    static Random random = new Random();
+
+    static void Main(string[] args)
     {
-        Stopwatch stopwatch = new Stopwatch();
-        Console.WriteLine("Start");
-        stopwatch.Start();
+        Console.WriteLine("Enter number of coupons to generate: ");
+        int couponsToGenerate = Convert.ToInt32(Console.ReadLine());
+        int lengthOfCoupon = 8;
 
-        for (int i = 0; i < 1000; i++)
+        List<string> generatedCoupons = new List<string>();
+        char[] keys = "0123456789".ToCharArray();
+
+
+        Console.WriteLine("Generated Coupons: ");
+        while (generatedCoupons.Count < couponsToGenerate)
         {
-            Thread.Sleep(20);
+            var coupon = GenerateCoupon(keys, lengthOfCoupon);
+            if (!generatedCoupons.Contains(coupon))
+            {
+                generatedCoupons.Add(coupon);
+                Console.WriteLine("\t[#{0}] {1}", generatedCoupons.Count, coupon);
+            }
         }
+        Console.WriteLine("done");
+        Console.ReadLine();
+    }
 
-        Console.WriteLine("Stop");
-        stopwatch.Stop();
-
-        Console.WriteLine("Time Elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed);
+    private static string GenerateCoupon(char[] keys, int lengthOfCoupon)
+    {
+        return Enumerable
+            .Range(1, lengthOfCoupon)
+            .Select(k => keys[random.Next(0, keys.Length - 1)])
+            .Aggregate("", (e, c) => e + c);
+        
 
     }
     }
